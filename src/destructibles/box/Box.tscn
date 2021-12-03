@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/destructibles/box/Box.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[node name="Box" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 17
+script = ExtResource( 1 )
+timer = NodePath("Timer")
+sprite = NodePath("Sprite")
+collision = NodePath("BoxCollision")
+area_collision = NodePath("Hurtbox/CollisionShape2D")
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.486275, 0.294118, 0.129412, 1 )
+texture = ExtResource( 2 )
+
+[node name="BoxCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="RespawnCollision" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnCollision"]
+shape = SubResource( 3 )
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+self_modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="RespawnCollision" to="." method="_on_RespawnCollision_body_entered"]
+[connection signal="body_exited" from="RespawnCollision" to="." method="_on_RespawnCollision_body_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

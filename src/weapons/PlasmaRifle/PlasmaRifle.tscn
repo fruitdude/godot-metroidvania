@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/weapons/PlasmaRifle/PlasmaRifle.gd" type="Script" id=1]
+[ext_resource path="res://src/weapons/PlasmaRifle/Bullet/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[node name="PlasmaRifle" type="Position2D"]
+script = ExtResource( 1 )
+bullet = ExtResource( 2 )
+muzzle = NodePath("Muzzle")
+timer = NodePath("Timer")
+is_continuous_shooting = true
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0, 0.392157, 1, 1 )
+position = Vector2( 32, 0 )
+scale = Vector2( 0.6, 0.05 )
+texture = ExtResource( 3 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 48, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
