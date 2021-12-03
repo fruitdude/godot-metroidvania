@@ -2,16 +2,11 @@
 extends PlayerState
 
 
-func _ready():
-	GameEvents.connect("box_destroyed", self, "_on_box_destroyed")
-
-
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
 	# We must declare all the properties we access through `owner` in the `Player.gd` script.
 	owner.velocity = Vector2.ZERO
 	
-
 
 func update(_delta: float) -> void:
 	# If you have platforms that break when standing on them, you need that check for 
@@ -20,18 +15,15 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Air")
 		return
 		
-		
 	if Input.is_action_pressed("move_left"):
 		player.sprite.flip_h = true
 	elif Input.is_action_pressed("move_right"):
 		player.sprite.flip_h = false
 
-		
 	if not Input.is_action_pressed("stay_stationary"):
 		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 			state_machine.transition_to("Run")
-			
-			
+				
 	if Input.is_action_just_pressed("jump"):
 		# As we'll only have one air state for both jump and fall, we use the `msg` dictionary 
 		# to tell the next state that we want to jump.
@@ -40,7 +32,5 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Air", {do_jump = true})
 		
 		
-func _on_box_destroyed() -> void:
-	if player.is_on_floor():
-		state_machine.transition_to("Air", {do_small_jump = true})
-
+func physics_update(_delta: float) -> void:
+	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
