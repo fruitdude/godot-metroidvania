@@ -1,10 +1,16 @@
 # Idle.gd
 extends PlayerState
 
+
+func _ready():
+	GameEvents.connect("box_destroyed", self, "_on_box_destroyed")
+
+
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
 	# We must declare all the properties we access through `owner` in the `Player.gd` script.
 	owner.velocity = Vector2.ZERO
+	
 
 
 func update(_delta: float) -> void:
@@ -32,4 +38,9 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Air", {do_jump = true})
 	elif Input.is_action_pressed("stay_stationary") and Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Air", {do_jump = true})
+		
+		
+func _on_box_destroyed() -> void:
+	if player.is_on_floor():
+		state_machine.transition_to("Air", {do_small_jump = true})
 

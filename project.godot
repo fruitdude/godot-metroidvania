@@ -54,6 +54,10 @@ config/name="Metroidvania"
 run/main_scene="res://src/main/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameEvents="*res://src/singletons/GameEvents.gd"
+
 [display]
 
 window/size/width=640

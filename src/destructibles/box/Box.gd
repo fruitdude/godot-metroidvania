@@ -8,6 +8,7 @@ export(NodePath) onready var area_collision = get_node(area_collision) as Collis
 
 var hit_points := 3.0
 var can_respawn := true
+var is_on_box := false
 
 
 func _on_Area2D_area_entered(_area: Area2D) -> void:
@@ -15,6 +16,8 @@ func _on_Area2D_area_entered(_area: Area2D) -> void:
 	hit_points -= 1.0
 	
 	if hit_points <= 0.0:
+		if is_on_box:
+			GameEvents.emit_signal("box_destroyed")
 		_disable_sprite_and_collisions()
 		timer.start(2.2)
 		
@@ -46,3 +49,11 @@ func _on_RespawnCollision_body_entered(_body: Node):
 func _on_RespawnCollision_body_exited(_body: Node):
 	can_respawn = true
 	timer.start(0.5)
+
+
+func _on_OnBoxArea_body_entered(_body: Node):
+	is_on_box = true
+
+
+func _on_OnBoxArea_body_exited(_body: Node):
+	is_on_box = false

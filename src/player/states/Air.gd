@@ -5,6 +5,8 @@ extends PlayerState
 func enter(msg := {}) -> void:
 	if msg.has("do_jump"):
 		player.velocity.y = -player.jump_impulse
+	elif msg.has("do_small_jump"):
+		player.velocity.y = -player.small_jump_impulse
 
 
 func update(_delta: float) -> void:
