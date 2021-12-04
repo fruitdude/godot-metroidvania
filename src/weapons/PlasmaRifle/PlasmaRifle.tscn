@@ -9,7 +9,6 @@ script = ExtResource( 1 )
 bullet = ExtResource( 2 )
 muzzle = NodePath("Muzzle")
 timer = NodePath("Timer")
-is_continuous_shooting = true
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 0, 0.392157, 1, 1 )

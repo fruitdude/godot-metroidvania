@@ -3,7 +3,8 @@ extends Area2D
 
 export(PackedScene) onready var impact_particle
 
-var speed := 750.0
+var speed := 1000.0
+var damage := 1.0
 
 
 func _physics_process(delta: float) -> void:

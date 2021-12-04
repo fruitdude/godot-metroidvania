@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/enemies/snail/Snail.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/enemies/snail/SnailPath.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 80, -176, 0, 0, 0, 0, 1456, -176, 0, 0, 0, 0, 1456, 304, 0, 0, 0, 0, 1392, 304, 0, 0, 0, 0, 1392, 432, 0, 0, 0, 0, 1072, 432, 0, 0, 0, 0, 1072, 688, 0, 0, 0, 0, 656, 688, 0, 0, 0, 0, 656, 560, 0, 0, 0, 0, 592, 560, 0, 0, 0, 0, 592, 432, 0, 0, 0, 0, 80, 432, 0, 0, 0, 0, 80, -176 )
+}
+
+[node name="SnailPath" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+path_follow = NodePath("PathFollow2D")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( 564.764, 432 )
+offset = 3373.19
+rotate = false
+
+[node name="Snail" parent="PathFollow2D" instance=ExtResource( 1 )]
