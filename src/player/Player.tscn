@@ -53,6 +53,7 @@ jump_impulse = 1000.0
 sprite = NodePath("Sprite")
 fsm = NodePath("StateMachine")
 label = NodePath("Label")
+label2 = NodePath("Label2")
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2.5, 2.5 )
@@ -83,9 +84,22 @@ script = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -32.0
-margin_top = -48.0
+margin_top = -72.0
 margin_right = 32.0
-margin_bottom = -34.0
+margin_bottom = -58.0
+rect_min_size = Vector2( 64, 14 )
+text = "State"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = -32.0
+margin_top = -56.0
+margin_right = 32.0
+margin_bottom = -42.0
 rect_min_size = Vector2( 64, 14 )
 text = "State"
 align = 1

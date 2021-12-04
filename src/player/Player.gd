@@ -12,6 +12,7 @@ var velocity : Vector2
 export(NodePath) onready var sprite = get_node(sprite) as Sprite
 export(NodePath) onready var fsm = get_node(fsm) as StateMachine
 export(NodePath) onready var label = get_node(label) as Label
+export(NodePath) onready var label2 = get_node(label2) as Label
 
 
 func _ready():
@@ -19,4 +20,5 @@ func _ready():
 	
 
 func _process(_delta: float) -> void:
-	label.text = fsm.state.name
+	label.text = str(velocity)
+	label2.text = fsm.state.name
