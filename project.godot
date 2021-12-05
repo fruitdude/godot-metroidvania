@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/statemachine/StateMachine.gd"
+}, {
+"base": "Position2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://src/weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
 "PlayerState": "",
 "Snail": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Weapon": ""
 }
 
 [application]
