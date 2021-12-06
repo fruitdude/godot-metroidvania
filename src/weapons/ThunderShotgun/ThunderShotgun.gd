@@ -22,7 +22,7 @@ func _input(event):
 			#commented code below it
 			for line in $Thunder.get_children():
 				line.points[0] = $Muzzle.position
-				line.points[1] = to_local(enemies[counter].global_position)
+				line.points[1] = to_local(enemy.global_position)
 			
 #			line_1.points[0] = $Muzzle.position
 #			line_1.points[1] = to_local(enemies[0].global_position)
