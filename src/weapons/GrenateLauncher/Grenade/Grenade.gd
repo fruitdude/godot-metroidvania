@@ -4,6 +4,8 @@ extends RigidBody2D
 export(NodePath) onready var timer = get_node(timer) as Timer
 export(PackedScene) onready var explosion 
 
+var damage := 1.0 #only used so the enemies give no error message
+
 
 func _on_Timer_timeout() -> void:
 	_instance_explosion()

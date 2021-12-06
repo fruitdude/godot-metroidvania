@@ -11,9 +11,10 @@ var can_respawn := true
 var is_on_box := false
 
 
-func _on_Area2D_area_entered(_area: Area2D) -> void:
+func _on_Area2D_area_entered(area: Area2D) -> void:
 	hit_points = clamp(hit_points, 1.0, 3.0)
-	hit_points -= 1.0
+	hit_points -= area.damage
+
 	
 	if hit_points <= 0.0:
 		_disable_sprite_and_collisions()
