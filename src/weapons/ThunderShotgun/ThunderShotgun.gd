@@ -6,14 +6,11 @@ export(NodePath) onready var line_1 = get_node(line_1) as Line2D
 export(NodePath) onready var line_2 = get_node(line_2) as Line2D
 
 var enemies := []
-var counter := 0
 
 #loops stunlock me
 func _input(event):
 	if event.is_action_pressed("shoot"):
 		enemies = enemy_detection_area.get_overlapping_areas()
-		
-		var counter = 0
 		
 		for enemy in enemies:
 			print(enemy.global_position)

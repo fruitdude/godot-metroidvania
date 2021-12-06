@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 					
 
 func _on_Snail_area_entered(area):
-	health_points -= area.damage
+	health_points -= 2
 	
 	if health_points <= 0:
 		queue_free()

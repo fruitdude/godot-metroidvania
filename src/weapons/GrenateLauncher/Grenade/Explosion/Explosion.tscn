@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/grenade/explosion/Explosion.png" type="Texture" id=1]
-[ext_resource path="res://src/weapons/Grenade/Explosion/Explosion.gd" type="Script" id=2]
+[ext_resource path="res://src/weapons/GrenateLauncher/Grenade/Explosion/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://assets/grenade/explosion/Explosion.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 22.0907
@@ -80,10 +80,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 8.0, 25.0, 34.0, 31.1111, 41.0 ]
+"values": [ 8.0, 59.2115, 80.0062, 82.0061, 96.0208, 83.4464 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CollisionShape2D:disabled")
@@ -125,11 +125,14 @@ tracks/4/keys = {
 }
 
 [node name="Explosion" type="Area2D"]
-script = ExtResource( 2 )
+collision_layer = 0
+collision_mask = 9
+script = ExtResource( 1 )
 anim_player = NodePath("AnimationPlayer")
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 2 )
 hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
