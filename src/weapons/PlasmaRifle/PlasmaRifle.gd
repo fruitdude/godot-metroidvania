@@ -4,7 +4,6 @@ extends Weapon
 export(PackedScene) onready var bullet
 
 
-
 func _ready():
 	connect("is_shooting", self, "_on_is_shooting")
 

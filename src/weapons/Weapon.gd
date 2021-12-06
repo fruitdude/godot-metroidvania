@@ -42,7 +42,6 @@ func _continious_shooting():
 			emit_signal("is_shooting")
 
 	
-	
 func _flip_weapon_sprite_vertical() -> void:
 	if Input.is_action_pressed("move_left"):
 		sprite.flip_v = true

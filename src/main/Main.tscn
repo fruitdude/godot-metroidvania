@@ -65,6 +65,9 @@ position = Vector2( 864, 32 )
 [node name="Box2" parent="Destructibles" instance=ExtResource( 3 )]
 position = Vector2( 992, 96 )
 
+[node name="Box3" parent="Destructibles" instance=ExtResource( 3 )]
+position = Vector2( 992, -32 )
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="SnailPath" parent="Enemies" instance=ExtResource( 4 )]

@@ -46,4 +46,4 @@ func _on_RespawnCollision_body_entered(_body: Node):
 
 func _on_RespawnCollision_body_exited(_body: Node):
 	can_respawn = true
-	timer.start(0.5)
+	timer.start(2.0)
