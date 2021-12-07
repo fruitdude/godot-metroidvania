@@ -1,0 +1,18 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec2 scale;
+uniform float zoom_y;
+
+uniform float aspect_ratio;
+
+
+void fragment(){
+	vec2 uv_waves = UV * scale;
+	uv_waves.y *= aspect_ratio;
+	
+	vec4 color_water = texture(TEXTURE, uv_waves);
+	COLOR = color_water;
+}"

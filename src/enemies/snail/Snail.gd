@@ -8,11 +8,6 @@ export(NodePath) onready var raycasts = get_node(raycasts) as Node2D
 var health_points := 5.0
 
 
-func _ready():
-	print(get_owner())
-	print(get_parent())
-
-
 func _physics_process(_delta: float) -> void:
 	for raycast in raycasts.get_children():
 		if raycast.is_colliding():
