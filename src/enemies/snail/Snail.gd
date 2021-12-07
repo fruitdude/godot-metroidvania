@@ -27,7 +27,6 @@ func _physics_process(_delta: float) -> void:
 					$Sprite.rotation_degrees = 180
 					
 					
-
 func _on_Snail_area_entered(area):
 	health_points -= area.damage
 	
