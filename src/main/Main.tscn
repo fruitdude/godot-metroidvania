@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/destructibles/box/Box.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/enemies/snail/SnailPath.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/Reflection2D.gd" type="Script" id=5]
+[ext_resource path="res://src/shaders/reflection2d/Reflection2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/water/water.png" type="Texture" id=6]
+[ext_resource path="res://src/shaders/water2d/Water2D.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -31,44 +33,6 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform vec4 color :hint_color;
-uniform float reflection_intensity = 0.5;
-uniform sampler2D transition_gradient :hint_black;
-
-// Updated from GDScript
-uniform float scale_y = 1.0f;
-uniform float zoom_y = 1.0f;
-
-void fragment() {
-    float uv_size_ratio_v = SCREEN_PIXEL_SIZE.y / TEXTURE_PIXEL_SIZE.y;
-    vec2 uv_reflected = vec2(SCREEN_UV.x, SCREEN_UV.y + uv_size_ratio_v * UV.y * 2.0 * scale_y * zoom_y);
-
-    vec4 reflection_color = texture(SCREEN_TEXTURE, uv_reflected);
-    float transition = texture(transition_gradient, vec2(1.0 - UV.y, 1.0)).r;
-    COLOR = mix(color, reflection_color, transition * reflection_intensity);
-}"
-
-[sub_resource type="Gradient" id=5]
-
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/color = Color( 0, 0.180392, 0.654902, 1 )
-shader_param/reflection_intensity = 0.285
-shader_param/scale_y = 5.0
-shader_param/zoom_y = 0.5
-shader_param/transition_gradient = SubResource( 6 )
-
-[sub_resource type="Shader" id=7]
-
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
 
 [node name="Main" type="Node2D"]
 
@@ -111,21 +75,34 @@ position = Vector2( 992, -32 )
 
 [node name="SnailPath" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 0, -1.43051e-06 )
-scale = Vector2( 1, 1 )
 
 [node name="PathFollow2D" parent="Enemies/SnailPath" index="0"]
 position = Vector2( 80, 300.426 )
 offset = 3488.13
 
-[node name="Reflection2D" type="Sprite" parent="."]
-material = SubResource( 4 )
-position = Vector2( 768, 672 )
-scale = Vector2( 24, 5 )
-texture = ExtResource( 1 )
-script = ExtResource( 5 )
+[node name="Water2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, 544 )
+texture = ExtResource( 6 )
 
-[node name="Water2D" type="Sprite" parent="."]
-material = SubResource( 8 )
+[node name="Water2D2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 96, 544 )
+texture = ExtResource( 6 )
+
+[node name="Water2D3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 160, 544 )
+texture = ExtResource( 6 )
+
+[node name="Water2D4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 224, 544 )
+texture = ExtResource( 6 )
+
+[node name="Water2D5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 128, 608 )
+scale = Vector2( 4, 1 )
+texture = ExtResource( 6 )
+
+[node name="Reflection2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1112, 656 )
 
 [editable path="Enemies/SnailPath"]
 [editable path="Enemies/SnailPath/PathFollow2D/Snail"]

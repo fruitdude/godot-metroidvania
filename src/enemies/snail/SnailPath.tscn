@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array(  )
+"points": PoolVector2Array( 0, 0, 0, 0, 80, -176, 0, 0, 0, 0, 1456, -176, 0, 0, 0, 0, 1456, 304, 0, 0, 0, 0, 1392, 304, 0, 0, 0, 0, 1392, 432, 0, 0, 0, 0, 80, 432, 0, 0, 0, 0, 80, -176, 0, 0, 0, 0, 80, -176 )
 }
 
 [node name="SnailPath" type="Path2D"]
@@ -14,6 +14,7 @@ script = ExtResource( 2 )
 path_follow = NodePath("PathFollow2D")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( 80, 415.561 )
 offset = 3373.19
 rotate = false
 
